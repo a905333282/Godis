@@ -1,18 +1,18 @@
 package cache
 
-type Overview struct{
-	totalKeysNum int
-	totalKeysSize int
+type Overview struct {
+	totalKeysNum   int
+	totalKeysSize  int
 	totalValueSize int
 }
 
-func (o *Overview) Add(value Frame) {
+func (o *Overview) Add(value *Frame) {
 	o.totalKeysNum += 1
 	o.totalKeysSize += value.GetKeySize()
 	o.totalValueSize += value.GetValueSize()
 }
 
-func (o *Overview) Del(value Frame) {
+func (o *Overview) Del(value *Frame) {
 	o.totalKeysNum -= 1
 	o.totalKeysSize -= value.GetKeySize()
 	o.totalValueSize -= value.GetValueSize()
@@ -28,4 +28,8 @@ func (o *Overview) GetKeysSize() int {
 
 func (o *Overview) GetValueSize() int {
 	return o.totalValueSize
+}
+
+func NewOverview() *Overview {
+	return &Overview{0, 0, 0}
 }

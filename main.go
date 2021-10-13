@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
-import "Godis/cache"
+import (
+	"Godis/cache"
+	"fmt"
+)
 
 func main() {
-	n := cache.NewFrame("1", []byte("str"))
-	fmt.Println(n.GetValueSize())
+	g := cache.NewGodisCache()
+	g.Set("1", cache.Frame{"1"})
+	fmt.Println(g.Overview())
 }
